@@ -24,7 +24,24 @@
 
 ---
 
-## 安装
+## 🚀 一键安装（复制发给 Claude Code / 任何 AI Agent）
+
+> 把下面这段话复制发给你的 AI 助手，它会自动完成安装和配置：
+
+```
+请帮我安装 GitHub 上 wpz1212ccl/pgstar_skills 仓库中的 creating-obsidian-vaults skill。
+1. 从 https://github.com/wpz1212ccl/pgstar_skills 下载 creating-obsidian-vaults/ 文件夹
+2. 放到全局 skills 目录：~/.config/opencode/skills/（Windows: C:\Users\<用户名>\.config\opencode\skills\）
+3. 然后询问我以下信息完成专属配置：
+   - 我的 Obsidian 知识库路径（vault 根目录）
+   - 知识库的一级分类目录有哪些（如 学习/工作/生活 等）
+   - 如果我不指定，你根据默认结构帮我初始化
+4. 配置完成后，告诉我如何使用：发「记一下 + 内容/链接」存笔记，发「整理一下知识库」做整理
+```
+
+---
+
+## 手动安装
 
 将对应 skill 的文件夹复制到 OpenCode 的 skills 目录：
 
