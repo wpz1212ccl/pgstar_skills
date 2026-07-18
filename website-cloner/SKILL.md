@@ -3,14 +3,14 @@ name: website-cloner
 description: >
   自动化网站复刻工具。使用Playwright MCP浏览指定网站，通过子agent并行处理各区域，
   全量遍历所有可交互元素，对每个元素测试默认/悬停/点击三种状态并截图，
-  录制动态效果（MP4/GIF），爬取素材资源（多模态描述命名），
+  录制动态效果（MP4/GIF），爬取素材资源，
   生成详细复刻文档（含HTML骨架+CSS布局+状态矩阵）。
   触发词：复刻网站、clone website、网站截图、website capture。
 ---
 
 # Website Cloner
 
-自动化网站复刻工具 — 子agent并行、全量遍历、动态录制、多模态命名、详细文档。
+自动化网站复刻工具 — 子agent并行、全量遍历、动态录制、详细文档。
 
 ## ⚠️ 核心原则
 
@@ -46,7 +46,7 @@ description: >
 每个子agent独立完成：
 - 区域内每个元素：截图 default → hover → click
 - 动态元素：录制 MP4/GIF
-- 素材下载：多模态描述命名
+- 素材下载：按规则命名
 - 直接写入对应文件夹
 
 ### 阶段3：主Agent - 文档生成
@@ -71,25 +71,37 @@ website-clone-{域名}/
 │   └── full-page.png
 ├── assets/                      # 按区域分文件夹
 │   ├── 01-hero/
-│   │   └── 01-title-description.png  # 多模态命名
+│   │   └── 01-hero-title.png    # 命名规则见下
 │   └── 02-cooking/
 └── videos/                      # 动态录制（必须有内容！）
     ├── 01-hero-load.mp4
     └── 02-card-hover.gif
 ```
 
-## 命名规则
+## 素材命名规则（不依赖多模态API）
 
-**截图**：`screenshots/{区域}/{元素}/{状态}.png`
+**格式**：`{序号}-{区域}-{元素描述}.{扩展名}`
+
+**命名优先级**：
+1. 读取HTML的 `alt`、`title`、`aria-label` 属性
+2. 结合元素类型和位置描述
+3. 生成简洁的英文描述
+
+**示例**：
 ```
-✅ screenshots/01-hero/title/default.png
-❌ screenshots/untitled-1.png
+01-hero-title.png              # Hero区域标题
+02-hero-subtitle.png           # Hero区域副标题
+03-hero-music-player.png       # Hero区域音乐播放器
+04-hero-airdrop-popup.png      # Hero区域AirDrop弹窗
+05-cooking-app-icon.png        # Cooking区域应用图标
+06-made-zenly-cover.png        # Made区域Zenly封面
 ```
 
-**素材**：`{序号}-{多模态描述}.{扩展名}`
+**禁止的命名**：
 ```
-✅ 01-jackie-hu-title.png
 ❌ img-001.png
+❌ screenshot.png
+❌ 元素1.png
 ```
 
 ## 动态录制（必须执行）
@@ -138,6 +150,11 @@ website-clone-{域名}/
 - 截图：screenshots/{区域序号}-{区域名}/
 - 素材：assets/{区域序号}-{区域名}/
 
+### 命名规则
+- 截图：{元素名}/default.png, hover.png, click.png
+- 动态：{元素名}/hover.gif 或 animation.mp4
+- 素材：{序号}-{区域}-{元素描述}.{扩展名}
+
 ### 执行
 1. 导航到URL，滚动到区域
 2. 对每个元素：
@@ -146,7 +163,7 @@ website-clone-{域名}/
    c. 悬停 → 截图 → {元素}/hover.png
    d. 点击 → 截图 → {元素}/click.png
    e. 有动画 → 录制 → {元素}/animation.mp4
-3. 下载素材，多模态命名
+3. 下载素材，按规则命名
 4. 返回：区域名 + 元素数 + 截图数 + 素材数
 ```
 
