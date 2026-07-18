@@ -22,6 +22,25 @@
 
 [查看详情](./creating-obsidian-vaults/SKILL.md)
 
+### 🌐 website-cloner
+
+自动化网站复刻工具 — 使用 Playwright 浏览网站、截图、测试交互，生成完整复刻文档。
+
+**核心能力：**
+- 自动导航到指定 URL，分析网站结构
+- 截图所有页面和区块（全页、首屏、导航、主内容等）
+- 测试所有交互：悬停、点击、拖拽、表单填写、动画等待
+- 记录所有状态变化，截图保存
+- 生成分层复刻文档（概览 + 详细技术附录）
+- 输出有序的目录结构，截图命名规范
+
+**使用方法：**
+```
+/website-cloner https://example.com
+```
+
+[查看详情](./website-cloner/SKILL.md)
+
 ---
 
 ## 🚀 一键安装（复制发给 Claude Code / 任何 AI Agent）
@@ -29,14 +48,13 @@
 > 把下面这段话复制发给你的 AI 助手，它会自动完成安装和配置：
 
 ```
-请帮我安装 GitHub 上 wpz1212ccl/pgstar_skills 仓库中的 creating-obsidian-vaults skill。
-1. 从 https://github.com/wpz1212ccl/pgstar_skills 下载 creating-obsidian-vaults/ 文件夹
+请帮我安装 GitHub 上 wpz1212ccl/pgstar_skills 仓库中的 skills：
+1. 从 https://github.com/wpz1212ccl/pgstar_skills 下载需要的 skill 文件夹
 2. 放到全局 skills 目录：~/.config/opencode/skills/（Windows: C:\Users\<用户名>\.config\opencode\skills\）
-3. 然后询问我以下信息完成专属配置：
-   - 我的 Obsidian 知识库路径（vault 根目录）
-   - 知识库的一级分类目录有哪些（如 学习/工作/生活 等）
-   - 如果我不指定，你根据默认结构帮我初始化
-4. 配置完成后，告诉我如何使用：发「记一下 + 内容/链接」存笔记，发「整理一下知识库」做整理
+3. 可用的 skills：
+   - creating-obsidian-vaults：自动整理 Obsidian 笔记
+   - website-cloner：自动化网站复刻工具
+4. 配置完成后，重启 AI 工具即可使用
 ```
 
 ---
