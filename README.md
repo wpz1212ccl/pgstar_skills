@@ -10,8 +10,38 @@
 
 | Skill | 描述 | 触发词 |
 |-------|------|--------|
+| [大哥救救我](#大哥救救我) | 半自动求助智谱GLM5.2 | `大哥救救我` |
 | [creating-obsidian-vaults](#creating-obsidian-vaults) | 自动整理 Obsidian 笔记 | `记一下`、`存到知识库`、`帮我存` |
 | [website-cloner](#website-cloner) | 自动化网站复刻工具 | `复刻网站`、`/website-cloner` |
+
+---
+
+## 大哥救救我
+
+半自动求助 skill — AI 生成文档，你去智谱提问，AI 读取结果并修改代码。
+
+**核心能力：**
+- 自动分析对话历史，提取错误信息和代码上下文
+- 生成结构化求助文档（问题描述 + 已尝试方案 + 需要帮助）
+- 读取智谱 GLM5.2 的回复，分析解决方案
+- 显示修改方案让你确认，确认后自动修改代码
+
+**工作流程：**
+```
+1. 你说"大哥救救我"
+2. AI 分析问题，生成 求助文档.md
+3. 你复制文档到智谱，得到回复
+4. 你把回复保存到 求助结果.md
+5. 回复"下一步"
+6. AI 读取结果，显示方案，确认后修改代码
+```
+
+**使用示例：**
+```
+大哥救救我
+```
+
+[查看完整文档 →](./大哥救救我/SKILL.md)
 
 ---
 
@@ -94,6 +124,16 @@
 ```
 pgstar_skills/
 ├── README.md                      # 本文件
+├── 大哥救救我/
+│   ├── SKILL.md                   # 半自动求助 skill
+│   ├── config.json                # 配置文件
+│   ├── agents/
+│   │   └── openai.yaml            # UI 元数据
+│   ├── references/
+│   │   └── examples.md            # 示例文档
+│   └── templates/
+│       ├── help-doc.md            # 求助文档模板
+│       └── prompt.txt             # 提示词模板
 ├── creating-obsidian-vaults/
 │   └── SKILL.md                   # Obsidian 笔记整理 skill
 └── website-cloner/
